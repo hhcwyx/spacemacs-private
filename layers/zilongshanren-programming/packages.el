@@ -52,64 +52,64 @@
 (defun zilongshanren-programming/post-init-typescript-mode ()
   (add-hook 'typescript-mode-hook 'my-ts-mode-hook))
 
-(defun zilongshanren-programming/post-init-lsp-mode ()
-  (progn
+;; (defun zilongshanren-programming/post-init-lsp-mode ()
+;;   (progn
 
-    (setq lsp-ui-doc-enable nil)
+;;     (setq lsp-ui-doc-enable nil)
     
-    (defun lsp--auto-configure ()
-      "Autoconfigure `lsp-ui', `company-lsp' if they are installed."
+;;     (defun lsp--auto-configure ()
+;;       "Autoconfigure `lsp-ui', `company-lsp' if they are installed."
 
-      (with-no-warnings
-        (when (functionp 'lsp-ui-mode)
-          (lsp-ui-mode))
+;;       (with-no-warnings
+;;         (when (functionp 'lsp-ui-mode)
+;;           (lsp-ui-mode))
 
-        (cond
-         ((eq :none lsp-prefer-flymake))
-         ((and (not (version< emacs-version "26.1")) lsp-prefer-flymake)
-          (lsp--flymake-setup))
-         ((and (functionp 'lsp-ui-mode) (featurep 'flycheck))
-          (require 'lsp-ui-flycheck)
-          (lsp-ui-flycheck-enable t)
-          ;; (flycheck-mode -1)
-          ))
+;;         (cond
+;;          ((eq :none lsp-prefer-flymake))
+;;          ((and (not (version< emacs-version "26.1")) lsp-prefer-flymake)
+;;           (lsp--flymake-setup))
+;;          ((and (functionp 'lsp-ui-mode) (featurep 'flycheck))
+;;           (require 'lsp-ui-flycheck)
+;;           (lsp-ui-flycheck-enable t)
+;;           ;; (flycheck-mode -1)
+;;           ))
 
-        (with-eval-after-load 'rust-mode
-          (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+;;         (with-eval-after-load 'rust-mode
+;;           (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-        (when (functionp 'company-lsp)
-          (company-mode 1)
+;;         (when (functionp 'company-lsp)
+;;           (company-mode 1)
 
-          ;; make sure that company-capf is disabled since it is not indented to be
-          ;; used in combination with lsp-mode (see #884)
-          (setq-local company-backends (remove 'company-capf company-backends))
+;;           ;; make sure that company-capf is disabled since it is not indented to be
+;;           ;; used in combination with lsp-mode (see #884)
+;;           (setq-local company-backends (remove 'company-capf company-backends))
 
-          (when (functionp 'yas-minor-mode)
-            (yas-minor-mode t)))))
+;;           (when (functionp 'yas-minor-mode)
+;;             (yas-minor-mode t)))))
     
-    (add-hook 'lsp-after-open-hook 'zilongshanren-refresh-imenu-index)
+;;     (add-hook 'lsp-after-open-hook 'zilongshanren-refresh-imenu-index)
 
-    (defun hidden-lsp-ui-sideline ()
-      (interactive)
-      (if (< (window-width) 180)
-          (progn
+;;     (defun hidden-lsp-ui-sideline ()
+;;       (interactive)
+;;       (if (< (window-width) 180)
+;;           (progn
             
-            (setq lsp-ui-sideline-show-code-actions nil)
-            (setq lsp-ui-sideline-show-diagnostics nil)
-            (setq lsp-ui-sideline-show-hover nil)
-            (setq lsp-ui-sideline-show-symbol nil))
-        (progn
+;;             (setq lsp-ui-sideline-show-code-actions nil)
+;;             (setq lsp-ui-sideline-show-diagnostics nil)
+;;             (setq lsp-ui-sideline-show-hover nil)
+;;             (setq lsp-ui-sideline-show-symbol nil))
+;;         (progn
             
-          (setq lsp-ui-sideline-show-code-actions nil)
-          ;; (setq lsp-ui-sideline-show-diagnostics t)
-          (setq lsp-ui-sideline-show-hover t)
-          ;; (setq lsp-ui-sideline-show-symbol t)
-          )))
+;;           (setq lsp-ui-sideline-show-code-actions nil)
+;;           ;; (setq lsp-ui-sideline-show-diagnostics t)
+;;           (setq lsp-ui-sideline-show-hover t)
+;;           ;; (setq lsp-ui-sideline-show-symbol t)
+;;           )))
     
-    (advice-add 'lsp-ui-sideline--run :after 'hidden-lsp-ui-sideline)
+;;     (advice-add 'lsp-ui-sideline--run :after 'hidden-lsp-ui-sideline)
 
-    (setq lsp-auto-configure t)
-    (setq lsp-prefer-flymake nil)))
+;;     (setq lsp-auto-configure t)
+;;     (setq lsp-prefer-flymake nil)))
 
 (defun zilongshanren-programming/init-compile-dwim ()
   (use-package compile-dwim
