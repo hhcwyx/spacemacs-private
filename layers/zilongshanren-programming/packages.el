@@ -106,7 +106,7 @@
           ;; (setq lsp-ui-sideline-show-symbol t)
           )))
     
-    (advice-add 'lsp-ui-sideline--run :after 'hidden-lsp-ui-sideline)
+    ;; (advice-add 'lsp-ui-sideline--run :after 'hidden-lsp-ui-sideline)
 
     (setq lsp-auto-configure t)
     (setq lsp-prefer-flymake nil)))

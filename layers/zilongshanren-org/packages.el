@@ -300,7 +300,7 @@ object (e.g., within a comment).  In these case, you need to use
 
       (require 'cal-china)
       ;; diary for chinese birthday
-      ;; https://emacs-china.org/t/topic/2119/14
+      ;; https://emacs-china.org/t/topic/2119/14 hhc commented the next funciton
       (defun my--diary-chinese-anniversary (lunar-month lunar-day &optional year mark)
         (if year
             (let* ((d-date (diary-make-date lunar-month lunar-day year))
@@ -511,7 +511,7 @@ object (e.g., within a comment).  In these case, you need to use
         (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
           "p" 'org-agenda-priority)
         ;; 默认显示节假日
-        (setq org-agenda-include-diary t)
+        ;; (setq org-agenda-include-diary t)
         )
       ;; the %i would copy the selected text into the template
       ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
